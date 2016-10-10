@@ -1,4 +1,4 @@
-from flask import Flask, request, Response, json
+from flask import Flask, request, json, jsonify
 app = Flask(__name__)
 
 @app.route('/')
@@ -13,7 +13,8 @@ def api_hello():
     }
     js = json.dumps(data)
 
-    resp = Response(js, status=200, mimetype='application/json')
+    resp = jsonify(data)
+    resp.status_code =200
     resp.headers['Link'] = 'http://jyntran.ca'
 
     return resp
